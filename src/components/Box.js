@@ -12,6 +12,7 @@ export const Box = forwardRef(({ title, subtitle, web, email }, ref) => {
   const classes = useBoxStyles();
   const boxRef = useRef(null);
   const [showBox, setShowBox] = useState(false);
+  const [showText, setShowText] = useState(false);
   const [height, setHeight] = useState(0);
 
   useImperativeHandle(ref, () => ({
@@ -22,6 +23,9 @@ export const Box = forwardRef(({ title, subtitle, web, email }, ref) => {
     setTimeout(() => {
       setShowBox(true);
     }, 1000);
+    setTimeout(() => {
+      setShowText(true);
+    }, 1500);
   }, []);
 
   useEffect(() => {
@@ -43,7 +47,9 @@ export const Box = forwardRef(({ title, subtitle, web, email }, ref) => {
       />
       <div
         ref={boxRef}
-        className={classNames(classes.root, { [classes.rootVisible]: showBox })}
+        className={classNames(classes.root, {
+          [classes.rootVisible]: showText
+        })}
       >
         <p className={classes.title}>{title}</p>
         <p className={classes.subtitle}>{subtitle}</p>

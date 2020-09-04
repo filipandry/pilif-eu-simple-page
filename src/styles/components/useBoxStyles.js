@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 export const useBoxStyles = createUseStyles({
   root: {
     padding: [10, 25],
-    background: "#000",
+    //background: "#000",
     position: "absolute",
     //width: "40vw",
     right: 0,
@@ -23,7 +23,7 @@ export const useBoxStyles = createUseStyles({
     transform: "translateY(-50%)"
   },
   bandVisible: {
-    transition: "transform 2s linear",
+    transition: "transform .8s linear",
     transform: "translateY(-50%)"
   },
   title: {
