@@ -1,40 +1,18 @@
 import React, { useRef } from "react";
 import { Box } from "./components/Box";
 import { Matrix } from "./components/Matrix";
-import { createUseStyles } from "react-jss";
 import useWindowSize from "./hooks/useWindowSize";
-
-const useStyles = createUseStyles({
-  "@global": {
-    app: {
-      fontFamily: "sans-serif",
-      textAlign: "center"
-    },
-    body: {
-      overflowX: "hidden",
-      margin: 0,
-      padding: 0
-    },
-    a: {
-      color: "unset",
-      textDecoration: "unset",
-      "&:visited": {
-        color: "unset",
-        textDecoration: "unset"
-      }
-    }
-  }
-});
+import { useAppStyles } from "./styles";
 
 export default function App() {
-  const classes = useStyles();
+  const classes = useAppStyles();
   const boxRef = useRef(null);
 
   const windowSize = useWindowSize();
 
   return (
     <div className={classes.app}>
-      <Matrix height={windowSize.height} top />
+      <Matrix height={windowSize.height} top text="FILIP ANDREI MURESAN" />
       <Box
         ref={boxRef}
         title={"Filip Andrei Muresan"}

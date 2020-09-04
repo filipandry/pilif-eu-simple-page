@@ -1,24 +1,20 @@
-import React, { useEffect, useRef } from "react";
-import { createUseStyles } from "react-jss";
+import React, { useEffect, useRef, useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
-
-const useStyles = createUseStyles({
-  root: {
-    height: "100vh",
-    width: "100vw",
-    position: "absolute",
-    top: 0,
-    left: 0
-  }
-});
-
-const letters = ["F", "I", "L", "p", "M", "U", "R", "E", "S", "A", "N"];
+import { useMatrixStyles } from "../styles";
 
 export const Matrix = (props) => {
-  const classes = useStyles(props);
+  const classes = useMatrixStyles(props);
   const windowSize = useWindowSize();
   const canvasRef = useRef();
   const intervalRef = useRef(undefined);
+  const [letters, setLetters] = useState(["0", "1"]);
+
+  useEffect(() => {
+    if (props.text) {
+      setLetters(props.text.split("").filter((item) => item !== " "));
+    }
+  }, [props.text]);
+
   useEffect(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -59,7 +55,7 @@ export const Matrix = (props) => {
     };
 
     intervalRef.current = setInterval(matrix, 50);
-  }, [windowSize]);
+  }, [windowSize, letters]);
 
   return <canvas className={classes.root} ref={canvasRef}></canvas>;
 };
