@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Box } from "./components/Box";
 import { Matrix } from "./components/Matrix";
 import { createUseStyles } from "react-jss";
