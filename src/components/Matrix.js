@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { createUseStyles } from "react-jss";
 import useWindowSize from "../hooks/useWindowSize";
 
@@ -18,7 +18,11 @@ export const Matrix = (props) => {
   const classes = useStyles(props);
   const windowSize = useWindowSize();
   const canvasRef = useRef();
+  const intervalRef = useRef(undefined);
   useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
     let canvas = canvasRef.current;
 
     const ctx = canvas.getContext("2d");
@@ -54,8 +58,8 @@ export const Matrix = (props) => {
       });
     };
 
-    setInterval(matrix, 50);
-  }, []);
+    intervalRef.current = setInterval(matrix, 50);
+  }, [windowSize]);
 
   return <canvas className={classes.root} ref={canvasRef}></canvas>;
 };
